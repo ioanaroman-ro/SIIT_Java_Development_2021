@@ -1,0 +1,108 @@
+1. Calculate the sum of the first 100 numbers higher than 0
+
+
+public class Main {
+
+    public static void main(String[] args){
+        int sum = (100 * (100 + 1)) / 2;
+        System.out.println(sum);
+    }
+}
+
+2. Display the smallest number from a collections of number
+
+
+import java.util.Scanner;
+
+public class Main2 {
+
+    public static void main(String[] args){
+        int min;
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the maximum size of the collection of numbers: ");
+        int n = scanner.nextInt();
+        int col[] = new int[n];
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter the number " + (i + 1) + ":");
+            col[i] = scanner.nextInt();
+        }
+        min = col[0];
+        for(int j = 0; j < n; j++){
+            if (col[j] < min)
+                min = col[j];
+        }
+        System.out.print("The minimum number is: " + min);
+	scanner.close();
+    }
+
+
+3. Display the max digit from a number. Read the number from keyboard.
+
+
+import java.util.Scanner;
+
+public class Main3 {
+    public static void main(String[] args){
+        int maxim = 0;
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number: ");
+        int n = scanner.nextInt();
+        while ( n != 0){
+            int i = n % 10;
+            maxim = Math.max(i,maxim);
+            n = n / 10;
+        }
+        System.out.print("The maximum digit is: " + maxim);
+	scanner.close();
+    }
+
+
+4. Check if a number is palindrom( e.g palindrom 1221, 34143)
+
+import java.util.Scanner;
+
+public class Main4 {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the number: ");
+        int n = scanner.nextInt();
+        int original = n;
+        int revn = 0;
+        while ( n != 0){
+            int i = n % 10;
+            revn = revn * 10 + i;
+            n = n / 10;
+        }
+        if (revn == original)
+            System.out.print("The number " + original + " is palindrome");
+        else
+            System.out.print("The number " + original + " is not palindrome");
+	scanner.close();
+    }
+
+
+5. Display all the prime numbers lower than a given number
+
+
+import java.util.Scanner;
+
+public class Main5 {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the maximum number: ");
+        int n = scanner.nextInt();
+        String primes = "";
+        for (int i = 1; i <= n; i++){
+            int c = 0;
+            for(int j = i; j >= 1; j--){
+                if(i % j == 0)
+                    c = c + 1;
+            }
+            if (c == 2)
+                primes = primes + i + " ";
+        }
+        scanner.close();
+        System.out.println("Prime numbers from 1 to " + n + " are:");
+        System.out.print(primes);
+    }
+}
