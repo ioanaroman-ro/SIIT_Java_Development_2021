@@ -1,0 +1,130 @@
+Homework - forwhileif
+
+1. Write a guessing game where the user has to guess a secret number. After every guess the program tells the user whether their number was too large or too small. At the end the number of tries needed should be printed. It counts only as one try if they input the same number multiple times consecutively.
+
+import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Guess {
+    public static void main(String[] args) {
+        Random rand = new Random();
+        Scanner scanner = new Scanner(System.in);
+        List chosenNo = new ArrayList();
+
+//      In scopul exercitiului, numerele vor fi de la 0 la 100, dar se pot da de utilizator.
+        int rand_no = rand.nextInt(100);
+//      System.out.println(rand_no); - pentru a verifica numarul ales
+
+        int tries = 1;
+
+        System.out.println("A fost ales un numar de la 1 la 100. Ghici!");
+        int n = scanner.nextInt();
+
+        chosenNo.add(n);
+
+        checkNumber(rand_no, n, chosenNo, tries);
+    }
+
+    private static void checkNumber(int rand_no, int n, List chosenNo, int tries) {
+        while ((n < rand_no) || (n > rand_no)) {
+            if (n < rand_no) {
+                n = tooSmall(chosenNo, n);
+            } else if (n > rand_no) {
+                n = tooBig(chosenNo, n);
+            }
+        }
+//      System.out.println(chosenNo); - pentru a vedea numere incercate deja
+        tries = chosenNo.toArray().length;
+        System.out.println("Ai ghicit! Ai incercat " + tries + " numere diferite!");
+    }
+
+    private static int tooBig(List chosenNo, int n) {
+        int tries = 1;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Prea mare!Mai incearca!");
+        n = scanner.nextInt();
+        tries = checkTry(chosenNo, n, tries);
+        return n;
+    }
+
+    private static int tooSmall(List chosenNo, int n) {
+        int tries = 1;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Prea mic!Mai incearca!");
+        n = scanner.nextInt();
+        tries = checkTry(chosenNo, n, tries);
+        return n;
+    }
+
+    private static int checkTry(List chosenNo, int n, int tries) {
+        int t = tries;
+        if (!chosenNo.contains(n)) {
+            chosenNo.add(n);
+            t++;
+        }
+        return t;
+    }
+
+
+
+2. Implement an arithmetic calculator (read numbers from keyboard; operations PLUS, MINUS, MULTIPLY, DIVIDE, etc
+
+import java.util.Scanner;
+
+public class Calculator {
+
+    public static void main(String[] args) {
+        int a, b, operator;
+        float result = 0;
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter first number: ");
+        a = scanner.nextInt();
+        System.out.println("Enter second number: ");
+        b = scanner.nextInt();
+
+        System.out.println("1: Addition(+).\n2: Subtraction(-).\n3: Multiplication(*).\n4: Divide(/).\n5: Remainder(%).\n6: Exit.");
+        System.out.println("Enter your choice: ");
+        operator = scanner.nextInt();
+        result = calculate(a, b, operator);
+        System.out.println("Result is: " + result);
+    }
+
+    private static float calculate(int a, int b, int operator) {
+        float result = 0;
+        Scanner scanner = new Scanner(System.in);
+        switch (operator) {
+            case 1:
+                result = (a + b);
+                break;
+            case 2:
+                result = (a - b);
+                break;
+            case 3:
+                result = (a * b);
+                break;
+            case 4:
+                if (b == 0) {
+                    System.err.println("Division by 0");
+                    break;
+                }
+                result = (float) ((float) a / (float) b);
+                break;
+            case 5:
+                result = (a % b);
+                break;
+            case 6:
+                System.out.println("EXIT");
+                break;
+            default:
+                System.out.println("An Invalid Choice!");
+                System.out.println("Repeat your Choice!");
+                operator = scanner.nextInt();
+                result = calculate(a, b, operator);
+        }
+        return result;
+    }
+

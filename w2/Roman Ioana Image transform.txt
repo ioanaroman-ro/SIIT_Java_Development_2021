@@ -1,0 +1,57 @@
+Homework (image transform library)
+Implement a method which receives the file system path to an image, loads the image, rotates it 90 degrees right and saves the new image in the same folder as the original one, but with a slightly different name.
+
+Optional: the program can be interactive and accept multiple commands: rotate left, etc.
+
+Note: a skeleton application (including the needed .jar file) will be provided.
+
+Note: there is no need to display the image.
+
+
+
+import ro.scoalainformala.image.ImageTransformation;
+import java.util.Scanner;
+
+public class RotateImage {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int choice = 0;
+
+        System.out.println("Source image path, without .jpg, and double any backslash: ");
+        String s = scanner.nextLine();
+        String source = s + ".jpg";
+        String destination = s + "1.jpg";
+        System.out.println("What would you like to do with your image?");
+        System.out.println("1: Rotate right.\n2: Rotate left.\n3: Upside down.\n4: Rotate other degree.\n5: Exit.");
+        choice = scanner.nextInt();
+        rotate(source, destination, choice);
+    }
+
+    private static void rotate(String source, String destination, int choice) {
+        Scanner scanner = new Scanner(System.in);
+        switch (choice) {
+            case 1:
+                ImageTransformation.rotate(source, destination, 90);
+                break;
+            case 2:
+                ImageTransformation.rotate(source, destination, 270);
+                break;
+            case 3:
+                ImageTransformation.rotate(source, destination, 180);
+                break;
+            case 4:
+                System.out.println("Enter degree: ");
+                int degree = scanner.nextInt();
+                ImageTransformation.rotate(source, destination, degree);
+                break;
+            case 5:
+                System.out.println("EXIT");
+                break;
+            default:
+                System.out.println("An Invalid Choice!");
+                System.out.println("Repeat your Choice!");
+                choice = scanner.nextInt();
+                rotate(source, destination, choice);
+        }
+
+    }

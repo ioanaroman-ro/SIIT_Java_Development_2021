@@ -1,0 +1,135 @@
+Calculate reading difficulty
+Write a program that evaluates the difficulty of reading a sentence in English.
+Things that make words hard to read are:
+- Occurrences of "ch", "ei", "ie" (ex. "ei" in "Receive")
+- More than two vowels in a row (ex. "uai" in "Acquaintance")
+- Double consonants (ex. "mm" and "tt" in "Committee")
+In addition, sentences are hard to read if such words are close to each other.
+
+Calculate a score for a sentence using the following rules:
+- 1 point for each string that makes a word hard to read
+- 2 points for each pair of words that have difficult to read strings
+- 1 point for two words that have difficult to read strings and are separated by one other word
+
+Try to use functions where appropriate. Ex. isVowelSequence, isDoubleConsonant, countDifficultStrings
+
+Examples:
+
+My acquaintance addresses the committee
+Score from each word: 0 + 1 + 2 + 0 + 2 = 5
+Score from sentence: 2 (acquaintance addresses) + 1 (addresses the committee)
+Final score: 5 + 3 = 8
+
+We perceive the quay's occasional accessibility as an issue
+Note: "quay's" is considered a word
+Score: 0 + 1 + 0 + 1 + 1 + 2 + 0 + 0 + 1 (from words) + 1+1 + 2 + 2 (from sentence) = 12
+
+
+
+import java.util.List;
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class ReadingDiffCalc {
+    public static void main(String[] args) {
+        System.out.println("Please write the sentence:");
+        Scanner sc = new Scanner(System.in);
+        String sentence;
+        String[] words;
+        sentence = sc.nextLine();
+        words = sentence.toLowerCase().split(" ");
+        int ratingPoint = 0;
+        List hardReads = new ArrayList();
+
+        for (String word : words) {
+//            System.out.println(word);
+            int points1 = calculateOccurrence(word);
+            int points2 = calculateVowels(word);
+            int points3 = calculateDoubleConsonants(word);
+            int s = points1 + points2 + points3;
+            ratingPoint += s;
+            if (s > 0) {
+                hardReads.add(s);
+            } else {
+                hardReads.add(0);
+            }
+        }
+
+        int points4 = pairOfWords(hardReads);
+        int points5 = separatedHardWords(hardReads);
+
+        ratingPoint = ratingPoint + points4 + points5;
+
+        System.out.println("Difficulty of reading for " + "\n" + sentence + "\n" + "is: " + ratingPoint);
+    }
+
+    private static int calculateOccurrence(String word) {
+        int points1 = 0;
+
+        for (int i = 0; i < word.length() - 1; i++) {
+            if ((word.charAt(i) == 'c' && word.charAt(i + 1) == 'h')
+                    || (word.charAt(i) == 'i' && word.charAt(i + 1) == 'e')
+                    || (word.charAt(i) == 'e' && word.charAt(i + 1) == 'i')
+            ) {
+                points1++;
+            }
+        }
+//        System.out.println("points1 =" + points1);
+        return points1;
+    }
+
+    private static int calculateVowels(String word) {
+        int points2 = 0;
+
+        for (int i = 0; i < word.length() - 2; i++) {
+            if ((isVowel(word.charAt(i))) && (isVowel(word.charAt(i + 1))) && (isVowel(word.charAt(i + 2)))) {
+                points2++;
+            }
+        }
+//        System.out.println("points2 =" + points2);
+        return points2;
+    }
+
+    private static boolean isVowel(char ch) {
+        if (ch == 'a' || ch == 'e' || ch == 'i' ||
+                ch == 'o' || ch == 'u' || ch == 'y') {
+            return true;
+        }
+        return false;
+    }
+
+    private static int calculateDoubleConsonants(String word) {
+        int points3 = 0;
+
+        for (int i = 0; i < word.length() - 1; i++) {
+            if ((!isVowel(word.charAt(i))) && ((!isVowel(word.charAt(i + 1)))) && (word.charAt(i) == word.charAt(i + 1))) {
+                points3++;
+            }
+        }
+//        System.out.println("points3 =" + points3);
+        return points3;
+    }
+
+    private static int pairOfWords(List hardReads) {
+        int points4 = 0;
+
+        for (int i = 0; i < hardReads.size() - 1; i++) {
+            if (((int) hardReads.get(i)) > 0 && ((int) hardReads.get(i + 1)) > 0) {
+                points4 += 2;
+            }
+        }
+//        System.out.println("points4 =" + points4);
+        return points4;
+    }
+
+    private static int separatedHardWords(List hardReads) {
+        int points5 = 0;
+
+        for (int i = 0; i < hardReads.size() - 2; i++) {
+            if (((int) hardReads.get(i)) > 0 && ((int) hardReads.get(i + 2)) > 0) {
+                points5 += 1;
+            }
+        }
+//        System.out.println("points5 =" + points5);
+        return points5;
+    }
