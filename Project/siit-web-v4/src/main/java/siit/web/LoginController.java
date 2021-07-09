@@ -1,16 +1,21 @@
 package siit.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import siit.sevices.UserService;
 
 import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/login")
 public class LoginController {
+
+    @Autowired
+    UserService userService;
 
     private int value = 0;
 
@@ -25,20 +30,20 @@ public class LoginController {
 
         ModelAndView mav = new ModelAndView();
 
-        if (user.equals("admin")) {
+        if (user.equals("admin") && password.equals("admin")) {
             session.setAttribute("logged_user", user);
             mav.setViewName("redirect:/users");
         } else {
 
-            if (user.equals(password)) {
+            if (userService.checkUser(user, password)) {
                 session.setAttribute("logged_user", user);
                 mav.setViewName("redirect:/customers");
             } else {
-                value++;
-                String error = "User and password do not match! " + value;
+                String error = "Not a registered user! ";
                 mav.setViewName("login");
                 mav.addObject("error", error);
             }
+
         }
 
         return mav;

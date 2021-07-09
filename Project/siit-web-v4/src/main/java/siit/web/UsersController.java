@@ -59,23 +59,27 @@ public class UsersController {
 
         return mav;
     }
-//
-//    @GetMapping("/{customer_id}/orders")
-//    public ModelAndView displayCustomerOrders(@PathVariable("customer_id") int customerId){
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("customer-orders");
-//        modelAndView.addObject("customer", customerService.getCustomerById(customerId));
-//
-//        return modelAndView;
-//    }
-//
-//    @GetMapping("/{customer_id}/orders/{order_id}/delete")
-//    public ModelAndView deleteCustomerOrder(@PathVariable("customer_id") int customerId, @PathVariable("order_id") int orderId){
-//        orderService.deleteOrderBy(orderId);
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("customer-orders");
-//        modelAndView.addObject("customer", customerService.getCustomerById(customerId));
-//        return modelAndView;
-//    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "/{userid}/personaldata")
+    public ModelAndView displayPersonalDataForm(@PathVariable int userid) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("user-change-personal-data");
+        mav.addObject("user", userService.getUserById(userid));
+        return mav;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/{userid}/personaldata")
+    public ModelAndView performPersonalDataChange(@ModelAttribute User user) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            userService.changePersonalData(user);
+            mav.setViewName("redirect:/users");
+        } catch (ValidationException ex) {
+            mav.setViewName("user-change-personal-data");
+            mav.addObject("error", ex.getMessage());
+        }
+
+        return mav;
+    }
 
 }

@@ -62,4 +62,11 @@ public class UserDao {
 
     }
 
+    public void changePersonalData(User user) {
+        String firstName = user.getFirstName();
+        String lastName = user.getLastName();
+        String editUser = "update users set firstname = ?, lastname = ? where userid=?";
+        jdbcTemplate.update(editUser, firstName, lastName, user.getUserid());
+
+    }
 }

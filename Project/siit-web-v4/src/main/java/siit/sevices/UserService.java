@@ -63,6 +63,23 @@ public class UserService {
         return user;
     }
 
+    public boolean checkUser(String userName, String password) {
+        User user = new User();
+        user.setUserName(userName);
+        user.setPassword(password);
+        boolean isUser = false;
+        for (User usr : getAllUsers()) {
+            if (usr.equals(user)) {
+                isUser = true;
+            }
+        }
+        return isUser;
+    }
+
+    public void changePersonalData(User user) {
+        userDao.changePersonalData(user);
+    }
+
 //    public User editUser(String name,String password,String role){
 //        System.out.println(name);
 //        System.out.println(password);

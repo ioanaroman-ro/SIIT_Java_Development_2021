@@ -36,6 +36,8 @@
                     <td><c:out value="${users.status}" /></td>
                     <td>
                         <a href="<c:url value="/users/${users.userid}/status"/> " class="btn btn-info">Change Status</a>
+                        <a href="<c:url value="/users/${users.userid}/personaldata"/> " class="btn btn-info">Change Personal Data</a>
+                        <a href="<c:url value="/users/${users.userid}/resetpass"/> " class="btn btn-info">Reset password</a>
                     </td>
                 </tr>
             </c:forEach>
