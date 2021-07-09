@@ -82,4 +82,26 @@ public class UsersController {
         return mav;
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/{userid}/resetpass")
+    public ModelAndView displayPasswordForm(@PathVariable int userid) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("user-reset-password");
+        mav.addObject("user", userService.getUserById(userid));
+        return mav;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, path = "/{userid}/resetpass")
+    public ModelAndView performResetPassword(@ModelAttribute User user) {
+        ModelAndView mav = new ModelAndView();
+        try {
+            userService.changePassword(user);
+            mav.setViewName("redirect:/users");
+        } catch (ValidationException ex) {
+            mav.setViewName("user-reset-password");
+            mav.addObject("error", ex.getMessage());
+        }
+
+        return mav;
+    }
+
 }

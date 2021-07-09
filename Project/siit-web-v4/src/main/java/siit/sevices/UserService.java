@@ -6,6 +6,7 @@ import siit.ValidationException;
 import siit.db.UserDao;
 import siit.model.User;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 
@@ -80,44 +81,23 @@ public class UserService {
         userDao.changePersonalData(user);
     }
 
-//    public User editUser(String name,String password,String role){
-//        System.out.println(name);
-//        System.out.println(password);
-//        System.out.println(role);
-//          User userEdited=  new User();
-//          userDao.editUser(name,password,role);
-//          List<User> users = userDao.getUsers();
-//          if(password.matches("\\w{2}\\d{3}\\w{1}\\d{2}")) {
-//              for (User user1 : users) {
-//                  if (user1.getName().equals(name)) {
-//                      userEdited = user1;
-//                  }
-//              }
-//          }else{
-//              throw new ValidationException("Password must be like 2Letters3Digits1Letter2Digits");
-//          }
-//          return userEdited;
-//    }
-//
-//    public User getUserByName(String name){
-//        List<User> users = userDao.getUsers();
-//        User userTemp = null;
-//        for(User user:users){
-//            if(user.getName().equals(name)){
-//                userTemp=user;
-//            }
-//        }
-//        return  userTemp;
-//    }
-//
-//
-//    public void deleteUser(String name) {
-//        userDao.deleteUser(name);
-//    }
-//
-//    public String  getRole(User user){
-//        return user.getRole();
-//    }
+    public void changePassword(User user) {
+        userDao.changePassword(user);
+    }
 
+    private String getName(HttpSession session) {
+        return session.getAttribute("logged_user").toString();
+    }
+
+    public int getId(HttpSession session) {
+        String name = this.getName(session);
+        int id = 0;
+        for (User user : this.getAllUsers()) {
+            if (user.getUserName().equals(name)) {
+                id = user.getUserid();
+            }
+        }
+        return id;
+    }
 
 }

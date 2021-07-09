@@ -8,6 +8,7 @@ import siit.ValidationException;
 import siit.model.Customer;
 import siit.sevices.CustomerService;
 import siit.sevices.OrderService;
+import siit.sevices.UserService;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public class CustomerController {
     CustomerService customerService;
 
     OrderService orderService;
+
+    UserService userService;
 
     @Autowired
     public CustomerController(CustomerService customerService, OrderService orderService) {

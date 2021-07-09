@@ -69,4 +69,10 @@ public class UserDao {
         jdbcTemplate.update(editUser, firstName, lastName, user.getUserid());
 
     }
+
+    public void changePassword(User user) {
+        String password = user.getPassword();
+        String editUser = "update users set password = ? where userid=?";
+        jdbcTemplate.update(editUser, password, user.getUserid());
+    }
 }
