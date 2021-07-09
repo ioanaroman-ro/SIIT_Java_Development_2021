@@ -35,7 +35,7 @@ $(() => {
             data: JSON.stringify({
                 product: { id: productId },
                 quantity: quantity,
-                value: value;
+                value: value
             })
         }).done(addOrUpdateOrderProductRow);
     });

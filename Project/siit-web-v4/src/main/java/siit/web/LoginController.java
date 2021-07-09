@@ -25,14 +25,20 @@ public class LoginController {
 
         ModelAndView mav = new ModelAndView();
 
-        if (user.equals(password)) {
+        if (user.equals("admin")) {
             session.setAttribute("logged_user", user);
-            mav.setViewName("redirect:/customers");
+            mav.setViewName("redirect:/users");
         } else {
-            value++;
-            String error = "User and password do not match! " + value;
-            mav.setViewName("login");
-            mav.addObject("error", error);
+
+            if (user.equals(password)) {
+                session.setAttribute("logged_user", user);
+                mav.setViewName("redirect:/customers");
+            } else {
+                value++;
+                String error = "User and password do not match! " + value;
+                mav.setViewName("login");
+                mav.addObject("error", error);
+            }
         }
 
         return mav;

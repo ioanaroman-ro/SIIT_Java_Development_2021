@@ -19,8 +19,6 @@ public class OrderDao {
     public List<Order> getOrdersBy(int customerId) {
         return jdbcTemplate.query("SELECT * FROM orders WHERE customer_id = ?",
                 this::getOrder, customerId);
-
-
     }
 
     public void deleteOrderBy(int orderId) {
@@ -35,6 +33,7 @@ public class OrderDao {
         Order order = new Order();
         order.setId(resultSet.getInt("id"));
         order.setNumber(resultSet.getString("number"));
+        order.setValue(resultSet.getDouble("value"));
         order.setPlaced(resultSet.getTimestamp("placed").toLocalDateTime());
         return order;
     }

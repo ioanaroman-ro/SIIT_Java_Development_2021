@@ -32,6 +32,11 @@
 					<button class="btn btn-primary">Login</button> 
 				</div>
 			</div>
+			<div>
+				<div class="col-sm-offset-2 col-sm-10">
+					<a href="<c:url value="/register"/> " class="btn btn-info">Register User</a>
+				</div>
+			</div>
 		</form>
 	</div>
 

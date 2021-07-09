@@ -58,6 +58,10 @@ public class OrderProductDao {
     public void updateOrderProductBy(int orderId, int productId, BigDecimal quantity) {
         jdbcTemplate.update("update ORDERS_PRODUCTS op set op.quantity = op.quantity + ? where order_id = ? and product_id = ?",
                 quantity, orderId, productId);
+
+        jdbcTemplate.update("update orders_products set opvalue = " +
+                "(select p.price from products p where p.id = ?) * quantity " +
+                "where order_id = ?", productId, orderId);
     }
 
     public void insertOrderProduct(int orderId, int productId, BigDecimal quantity) {
@@ -66,6 +70,14 @@ public class OrderProductDao {
                         "(select p.id from products p where p.id = ?)," +
                         "?)",
                 orderId, productId, quantity);
+
+        jdbcTemplate.update("update orders_products set opvalue = " +
+                "(select p.price from products p where p.id = ?) * quantity " +
+                "where order_id = ?", productId, orderId);
+
+        jdbcTemplate.update("update orders set value = " +
+                "(select sum(opvalue) from orders_products op where op.order_id = ?)" +
+                "where id = ?", orderId, orderId);
     }
 
 }
