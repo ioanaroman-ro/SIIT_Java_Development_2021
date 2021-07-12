@@ -81,4 +81,31 @@ public class CustomerController {
         return modelAndView;
     }
 
+    @GetMapping("/{customer_id}/orders/add")
+    public ModelAndView addCustomerOrder(@PathVariable("customer_id") int customerId){
+        //orderService.addOrder();
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("customer-add-order");
+        modelAndView.addObject("customer", customerService.getCustomerById(customerId));
+        return modelAndView;
+    }
+
+    @PostMapping("/{customer_id}/orders/add")
+    public ModelAndView performOrderEdit(@RequestParam String number, @RequestParam String placed, @PathVariable("customer_id") int customerId) {
+
+        ModelAndView mav = new ModelAndView();
+        try {
+            orderService.getOrders(number, placed, customerId);
+            mav.setViewName("customer-orders");
+            mav.addObject("customer", customerService.getCustomerById(customerId));
+        } catch (ValidationException ex) {
+            mav.setViewName("customer-add-order");
+            mav.addObject("error", ex.getMessage());
+        }
+
+        return mav;
+    }
+
+
+
 }

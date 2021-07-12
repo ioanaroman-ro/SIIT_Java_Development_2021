@@ -29,6 +29,11 @@ public class OrderDao {
         jdbcTemplate.update("DELETE FROM orders_products WHERE order_id = ?", orderId);
     }
 
+    public void insertOrder(Order order,int customerId){
+
+        jdbcTemplate.update("INSERT INTO ORDERS (number, placed, customer_id) VALUES (?,?,?)",order.getNumber(),order.getPlaced(),customerId);
+    }
+
     private Order getOrder(ResultSet resultSet, int rowNum) throws SQLException {
         Order order = new Order();
         order.setId(resultSet.getInt("id"));
