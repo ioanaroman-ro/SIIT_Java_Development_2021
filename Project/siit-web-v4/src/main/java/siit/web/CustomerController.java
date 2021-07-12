@@ -6,13 +6,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import siit.ValidationException;
 import siit.model.Customer;
-import siit.model.User;
 import siit.sevices.CustomerService;
 import siit.sevices.OrderService;
 import siit.sevices.UserService;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 @RequestMapping("/customers")
@@ -68,7 +66,6 @@ public class CustomerController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("customer-orders");
         modelAndView.addObject("customer", customerService.getCustomerById(customerId));
-
         return modelAndView;
     }
 
@@ -95,7 +92,7 @@ public class CustomerController {
 
         ModelAndView mav = new ModelAndView();
         try {
-            orderService.getOrders(number, placed, customerId);
+            orderService.insertOrder(number, placed, customerId);
             mav.setViewName("customer-orders");
             mav.addObject("customer", customerService.getCustomerById(customerId));
         } catch (ValidationException ex) {

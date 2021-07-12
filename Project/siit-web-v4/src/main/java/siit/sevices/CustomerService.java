@@ -27,6 +27,10 @@ public class CustomerService {
         Customer customer = customerDao.getCustomerById(id);
         List<Order> orders = orderDao.getOrdersBy(id);
 
+        for (Order order: orders){
+            order.setValue(orderDao.calculateValue(order.getId()));
+        }
+
         customer.setOrders(orders);
         return customer;
     }
