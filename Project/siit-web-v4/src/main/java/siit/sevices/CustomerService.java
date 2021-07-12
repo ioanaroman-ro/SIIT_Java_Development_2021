@@ -19,8 +19,8 @@ public class CustomerService {
     @Autowired
     OrderDao orderDao;
 
-    public List<Customer> getCustomers() {
-        return customerDao.getAllCustomers();
+    public List<Customer> getCustomers(int userid) {
+        return customerDao.getAllCustomers(userid);
     }
 
     public Customer getCustomerById(int id) {

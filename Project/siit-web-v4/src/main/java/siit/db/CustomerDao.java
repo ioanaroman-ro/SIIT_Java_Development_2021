@@ -18,9 +18,9 @@ public class CustomerDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    public List<Customer> getAllCustomers(){
-        return jdbcTemplate.query("SELECT * FROM customers",
-                this::getCustomer);
+    public List<Customer> getAllCustomers(int userid){
+        return jdbcTemplate.query("SELECT * FROM customers where userid = ?",
+                this::getCustomer, userid);
     }
 
     public Customer getCustomerById(int id) {

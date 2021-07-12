@@ -6,10 +6,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import siit.ValidationException;
 import siit.model.Customer;
+import siit.model.User;
 import siit.sevices.CustomerService;
 import siit.sevices.OrderService;
 import siit.sevices.UserService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -23,19 +25,18 @@ public class CustomerController {
     UserService userService;
 
     @Autowired
-    public CustomerController(CustomerService customerService, OrderService orderService) {
+    public CustomerController(CustomerService customerService, OrderService orderService, UserService userService) {
         this.customerService = customerService;
         this.orderService = orderService;
+        this.userService = userService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView displayCustomers(){
+    public ModelAndView displayCustomers(HttpSession session){
         ModelAndView mav = new ModelAndView();
-
-        List<Customer> customerList = customerService.getCustomers();
-
+        int userid = userService.getId(session);
         mav.setViewName("customers-list");
-        mav.addObject("customers", customerService.getCustomers());
+        mav.addObject("customers", customerService.getCustomers(userid));
 
         return mav;
     }
