@@ -64,7 +64,7 @@ function addOrderProductRow(orderProduct) {
     newRow.find('[name="buttonProductRemove"]').click(() => {
         $.ajax({
             url: `/api/customers/${customerId}/orders/${orderId}/products/${orderProduct.id}`,
-            type: 'POST'
+            type: 'DELETE'
         }).done(() =>
             newRow.hide(400, () => newRow.remove())
         );
