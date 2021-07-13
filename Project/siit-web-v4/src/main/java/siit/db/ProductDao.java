@@ -34,6 +34,7 @@ public class ProductDao {
         product.setName(resultSet.getString("name"));
         product.setWeight(resultSet.getBigDecimal("weight"));
         product.setPrice(resultSet.getBigDecimal("price"));
+        product.setUrl(resultSet.getString("url"));
 
         return product;
     }

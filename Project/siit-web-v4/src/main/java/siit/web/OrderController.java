@@ -38,7 +38,8 @@ public class OrderController {
     }
 
     @DeleteMapping("/products/{orderProductId}")
-    public void removeProduct(@PathVariable int customerId, @PathVariable int orderId, @PathVariable int orderProductId) {
+    public void removeProduct(@PathVariable int orderProductId) {
+        System.out.println("orderProductId " + orderProductId);
         orderProductService.removeOrderProduct(orderProductId);
     }
 

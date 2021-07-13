@@ -1,4 +1,3 @@
-
 var customerId = $.url('#customerId');
 var orderId = $.url('#orderId');
 
@@ -65,7 +64,7 @@ function addOrderProductRow(orderProduct) {
     `);
     newRow.find('[name="buttonProductRemove"]').click(() => {
         $.ajax({
-            url: `/api/customers/${customerId}/orders/${orderId}/products/${orderProductId}`,
+            url: `/api/customers/${customerId}/orders/${orderId}/products/${orderProduct.id}`,
             type: 'DELETE'
         }).done(() =>
             newRow.hide(400, () => newRow.remove())

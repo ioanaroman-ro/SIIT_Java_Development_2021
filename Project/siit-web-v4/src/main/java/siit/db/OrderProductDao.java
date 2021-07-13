@@ -19,7 +19,7 @@ public class OrderProductDao {
     public List<OrderProduct> getOrderProductBy(int orderId) {
         return jdbcTemplate.query(""
                 + "SELECT  op.order_id,  op.quantity, p.name, "
-                + "        op.quantity * p.price AS value, p.id as product_id, p.weight, p.price AS price "
+                + "        op.quantity * p.price AS value, p.id as product_id, p.weight, p.price AS price, p.url as image "
                 + "FROM ORDERS_PRODUCTS op "
                 + "JOIN products p on p.id = op.product_id "
                 + "WHERE op.order_id = ?", this::getOrderProduct, orderId);
@@ -27,14 +27,15 @@ public class OrderProductDao {
 
     public OrderProduct getOneOrderProductBy(int orderId, int productId) {
         return jdbcTemplate.queryForObject("SELECT  op.order_id,  op.quantity, p.name, "
-                + "        op.quantity * p.price AS value, p.id as product_id, p.weight, p.price AS price "
+                + "        op.quantity * p.price AS value, p.id as product_id, p.weight, p.price AS price, p.url as image "
                 + "FROM ORDERS_PRODUCTS op "
                 + "JOIN products p on p.id = op.product_id "
                 + "WHERE op.order_id = ? and p.id = ?",this::getOrderProduct, orderId, productId);
     }
 
     public void removeOneOrderProductBy(int orderProductId) {
-        jdbcTemplate.update("DELETE FROM ORDERS_PRODUCTS op WHERE op.id = ?", orderProductId);
+        System.out.println("Am ajuns la order product si id este " + orderProductId);
+        jdbcTemplate.update("DELETE FROM ORDERS_PRODUCTS WHERE id = ?", orderProductId);
     }
 
     private OrderProduct getOrderProduct(ResultSet resultSet, int rowNum) throws SQLException {
@@ -49,6 +50,7 @@ public class OrderProductDao {
         product.setName(resultSet.getString("name"));
         product.setWeight(resultSet.getBigDecimal("weight"));
         product.setPrice(resultSet.getBigDecimal("price"));
+        product.setUrl(resultSet.getString("url"));
 
         orderProduct.setProduct(product);
 

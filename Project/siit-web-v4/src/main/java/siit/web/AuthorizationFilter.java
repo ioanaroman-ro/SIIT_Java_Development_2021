@@ -23,7 +23,7 @@ public class AuthorizationFilter implements Filter {
             ((HttpServletResponse) response).sendRedirect("/login");
         }
         else if (req.getServletPath().equals("/login") && req.getSession(true).getAttribute("logged_user") != null) {
-            ((HttpServletResponse) response).sendRedirect("/homePage");
+            ((HttpServletResponse) response).sendRedirect("/customers");
         } else {
             chain.doFilter(request, response);
         }
