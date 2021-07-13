@@ -18,7 +18,7 @@ public class OrderProductDao {
 
     public List<OrderProduct> getOrderProductBy(int orderId) {
         return jdbcTemplate.query(""
-                + "SELECT  op.order_id,  op.quantity, p.name, "
+                + "SELECT  op.id,  op.order_id, op.quantity, p.name, "
                 + "        op.quantity * p.price AS value, p.id as product_id, p.weight, p.price AS price, p.url as image "
                 + "FROM ORDERS_PRODUCTS op "
                 + "JOIN products p on p.id = op.product_id "
@@ -26,7 +26,7 @@ public class OrderProductDao {
     }
 
     public OrderProduct getOneOrderProductBy(int orderId, int productId) {
-        return jdbcTemplate.queryForObject("SELECT  op.order_id,  op.quantity, p.name, "
+        return jdbcTemplate.queryForObject("SELECT  op.id, op.order_id,  op.quantity, p.name, "
                 + "        op.quantity * p.price AS value, p.id as product_id, p.weight, p.price AS price, p.url as image "
                 + "FROM ORDERS_PRODUCTS op "
                 + "JOIN products p on p.id = op.product_id "
@@ -40,7 +40,8 @@ public class OrderProductDao {
 
     private OrderProduct getOrderProduct(ResultSet resultSet, int rowNum) throws SQLException {
         OrderProduct orderProduct = new OrderProduct();
-        orderProduct.setId(resultSet.getInt("order_id"));
+        orderProduct.setId(resultSet.getInt("id"));
+        orderProduct.setOrderId(resultSet.getInt("order_id"));
         orderProduct.setName(resultSet.getString("name"));
         orderProduct.setQuantity(resultSet.getBigDecimal("quantity"));
         orderProduct.setValue(resultSet.getBigDecimal("value"));

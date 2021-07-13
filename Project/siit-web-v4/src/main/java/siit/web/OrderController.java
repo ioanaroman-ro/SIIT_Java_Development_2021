@@ -37,7 +37,7 @@ public class OrderController {
         return orderProductService.addOrderProduct(orderProduct, orderId);
     }
 
-    @DeleteMapping("/products/{orderProductId}")
+    @RequestMapping ( method = RequestMethod.POST, path = "/products/{orderProductId}")
     public void removeProduct(@PathVariable int orderProductId) {
         System.out.println("orderProductId " + orderProductId);
         orderProductService.removeOrderProduct(orderProductId);

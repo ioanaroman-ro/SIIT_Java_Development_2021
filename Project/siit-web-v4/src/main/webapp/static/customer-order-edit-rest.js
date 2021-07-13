@@ -24,7 +24,7 @@ $(() => {
         var quantity = $('#productAddQuantity').val();
         var value = $('#productAddValue').val();
 
-        $('#productAddId, #productAddName, #productAddQuantity', '#productAddValue').val(null);
+        $('##productAddId, #productAddName, #productAddQuantity', '#productAddValue').val(null);
 
         $.ajax({
             url: `/api/customers/${customerId}/orders/${orderId}/products`,
@@ -33,15 +33,14 @@ $(() => {
             contentType: 'application/json',
             data: JSON.stringify({
                 product: { id: productId },
-                quantity: quantity,
-                value: value
+                quantity: quantity
             })
         }).done(addOrUpdateOrderProductRow);
     });
 })
 
 function addOrUpdateOrderProductRow(orderProduct) {
-    var existingRow = $("#op_" + orderProduct.product.id);
+    var existingRow = $("#op_" + orderProduct.id);
     if (existingRow.length == 1) {
         existingRow.find('[name="spanQuantity"]')
             .hide().text(orderProduct.quantity).show('slow');
@@ -54,18 +53,18 @@ function addOrUpdateOrderProductRow(orderProduct) {
 
 function addOrderProductRow(orderProduct) {
     var newRow = $(`
-        <tr id="op_${orderProduct.product.id}">
+        <tr id="op_${orderProduct.id}">
             <th>${orderProduct.product.name}</th>
             <th><span name="spanQuantity">${orderProduct.quantity}</span></th>
             <th><span name="spanValue">${orderProduct.value}</span></th>
-            <th><img src="${orderProduct.product.url}" width="15px height=15px"/></th>
+            <th><img src="${orderProduct.product.url}" width="150px height=150px"/></th>
             <th><button name="buttonProductRemove" class="btn btn-info">Remove</button></th>
         </tr>
     `);
     newRow.find('[name="buttonProductRemove"]').click(() => {
         $.ajax({
             url: `/api/customers/${customerId}/orders/${orderId}/products/${orderProduct.id}`,
-            type: 'DELETE'
+            type: 'POST'
         }).done(() =>
             newRow.hide(400, () => newRow.remove())
         );
