@@ -14,8 +14,8 @@
   		<div class="pull-left">
   			Welcome ${logged_user}! This is a list of all customers.
   			<a href="/logout" class="btn btn-primary">Logout</a>
-            <a href="<c:url value="/mypersonaldata"/> " class="btn btn-info">Change Personal Data</a>
-            <a href="<c:url value="/myresetpass"/> " class="btn btn-info">Reset password</a>
+            <a href="<c:url value="/mypersonaldata"/> " class="btn btn-primary">Change Personal Data</a>
+            <a href="<c:url value="/myresetpass"/> " class="btn btn-primary">Reset password</a>
   		</div>
   		<div class="clearfix"></div>
   	</div>
@@ -37,5 +37,9 @@
                 </tr>
             </c:forEach>
     </table>
+
+    <div>
+    <a href="<c:url value="/customers/addcustomer"/> " class="btn btn-primary">Add new customer</a>
+    </div>
   </body>
 </html>

@@ -16,19 +16,25 @@ public class ProductDao {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    public List<Product> getAllProducts() {
+        return jdbcTemplate.query("SELECT * FROM products",
+                this::getProduct);
+
+    }
+
     public List<Product> getProductsBy(String term) {
         return jdbcTemplate.query("SELECT * FROM products WHERE LOWER(name) LIKE ?",
-                this::getOrderProduct, "%" + term.toLowerCase() + "%");
+                this::getProduct, "%" + term.toLowerCase() + "%");
 
     }
 
 
     public Product getProductByID(int id) {
         return jdbcTemplate.queryForObject("SELECT * FROM products WHERE id = ?",
-                this::getOrderProduct, id);
+                this::getProduct, id);
     }
 
-    private Product getOrderProduct(ResultSet resultSet, int rowNum) throws SQLException {
+    private Product getProduct(ResultSet resultSet, int rowNum) throws SQLException {
         Product product = new Product();
         product.setId(resultSet.getInt("id"));
         product.setName(resultSet.getString("name"));

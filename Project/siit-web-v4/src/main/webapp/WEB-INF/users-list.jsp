@@ -14,6 +14,7 @@
   		<div class="pull-left">
   			Welcome ${logged_user}! This is a list of all users.
   			<a href="/logout" class="btn btn-primary">Logout</a>
+  			<a href="/products" class="btn btn-primary">View products</a>
   		</div>
   		<div class="clearfix"></div>
   	</div>
