@@ -80,7 +80,6 @@ public class CustomerController {
 
     @GetMapping("/{customer_id}/orders/add")
     public ModelAndView addCustomerOrder(@PathVariable("customer_id") int customerId){
-        //orderService.addOrder();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("customer-add-order");
         modelAndView.addObject("customer", customerService.getCustomerById(customerId));
@@ -88,7 +87,7 @@ public class CustomerController {
     }
 
     @PostMapping("/{customer_id}/orders/add")
-    public ModelAndView performOrderEdit(@RequestParam String number, @RequestParam String placed, @PathVariable("customer_id") int customerId) {
+    public ModelAndView addNewOrder(@RequestParam String number, @RequestParam String placed, @PathVariable("customer_id") int customerId) {
 
         ModelAndView mav = new ModelAndView();
         try {

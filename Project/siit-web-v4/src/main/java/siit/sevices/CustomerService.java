@@ -8,6 +8,7 @@ import siit.db.OrderDao;
 import siit.model.Customer;
 import siit.model.Order;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -41,5 +42,13 @@ public class CustomerService {
         } else {
             throw new ValidationException("Invalid phone number");
         }
+    }
+
+    public void createNewCustomer(String name, String phone, String email, LocalDate birthDate, int userid) {
+        Customer customer = new Customer();
+        customer.setName(name);
+        customer.setPhone(phone);
+        customer.setBirthDate(birthDate);
+        customerDao.addNewCustomer(customer, userid);
     }
 }

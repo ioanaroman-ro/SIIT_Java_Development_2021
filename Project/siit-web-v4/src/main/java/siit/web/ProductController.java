@@ -1,14 +1,14 @@
 package siit.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import siit.model.OrderProduct;
 import siit.model.Product;
 import siit.sevices.ProductService;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -31,6 +31,19 @@ public class ProductController {
         mav.setViewName("product-list");
         mav.addObject("products", productService.getProducts());
 
+        return mav;
+    }
+
+
+
+    @PostMapping("/products")
+    public ModelAndView insertProduct(@RequestParam String name,
+                                      @RequestParam Double weight,
+                                      @RequestParam Double price,
+                                      @RequestParam String url){
+        ModelAndView mav = new ModelAndView();
+        //productService.createNewProduct(name,weight,price,url);
+        mav.setViewName("redirect:/products");
         return mav;
     }
 

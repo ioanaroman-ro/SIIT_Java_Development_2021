@@ -39,7 +39,7 @@
     </table>
 
     <div>
-    <a href="<c:url value="/customers/addcustomer"/> " class="btn btn-primary">Add new customer</a>
+    <a href="<c:url value="/addNewCustomer"/> " class="btn btn-primary">Add new customer</a>
     </div>
   </body>
 </html>
