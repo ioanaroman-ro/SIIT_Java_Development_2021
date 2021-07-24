@@ -44,4 +44,10 @@ public class ProductDao {
 
         return product;
     }
+
+    public void addNewProduct(Product product) {
+        jdbcTemplate.update("insert into products (NAME, WEIGHT, PRICE, URL) " +
+                        "VALUES (?,?,?,?)",
+                product.getName(), product.getWeight(), product.getPrice(), product.getUrl());
+    }
 }

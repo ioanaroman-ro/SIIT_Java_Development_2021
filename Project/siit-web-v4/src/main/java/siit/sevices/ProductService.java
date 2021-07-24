@@ -6,6 +6,7 @@ import siit.db.ProductDao;
 import siit.model.Customer;
 import siit.model.Product;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -23,4 +24,12 @@ public class ProductService {
     }
 
 
+    public void createNewProduct(String name, Double weight, Double price, String url) {
+        Product product = new Product();
+        product.setName(name);
+        product.setPrice(BigDecimal.valueOf(price));
+        product.setWeight(BigDecimal.valueOf(weight));
+        product.setUrl(url);
+        productDao.addNewProduct(product);
+    }
 }

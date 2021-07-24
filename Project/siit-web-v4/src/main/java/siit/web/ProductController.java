@@ -36,13 +36,20 @@ public class ProductController {
 
 
 
-    @PostMapping("/products")
+    @GetMapping("/products/AddNewProduct")
+    public ModelAndView addProduct(){
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("product-add");
+        return mav;
+    }
+
+    @PostMapping("/products/AddNewProduct")
     public ModelAndView insertProduct(@RequestParam String name,
                                       @RequestParam Double weight,
                                       @RequestParam Double price,
                                       @RequestParam String url){
         ModelAndView mav = new ModelAndView();
-        //productService.createNewProduct(name,weight,price,url);
+        productService.createNewProduct(name,weight,price,url);
         mav.setViewName("redirect:/products");
         return mav;
     }
