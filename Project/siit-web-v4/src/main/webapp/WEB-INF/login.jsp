@@ -7,9 +7,26 @@
       rel="stylesheet"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous">
+<style>
+body, html {
+  height: 100%;
+}
+.bg {
+  /* The image used */
+  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(20).jpg");
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
 </head>
 <body>
-
+    <div class="bg">
 	<div class="container">
 		<form class="form-horizontal" role="form" method="post">
 			<div class="form-group">
@@ -39,6 +56,6 @@
 			</div>
 		</form>
 	</div>
-
+</div>
 </body>
 </html>

@@ -36,6 +36,10 @@
 
 				</div>
 			</div>
+
+			<div class="col-sm-offset-2 col-sm-10">
+            	<a href="<c:url value="/login"/> " class="btn btn-info">Cancel</a>
+            </div>
 		</form>
 	</div>
 
