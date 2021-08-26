@@ -73,12 +73,11 @@ public class UserService {
             if (usr.equals(user)) {
                 isUser = true;
                 user.setStatus(usr.getStatus());
+                if (user.getStatus().equalsIgnoreCase("Inactive")) {
+                    throw new ValidationException("User invalid. Please contact admin.");
+                }
                 break;
             }
-        }
-
-        if (user.getStatus().equalsIgnoreCase("Inactive")) {
-            throw new ValidationException("User invalid. Please contact admin.");
         }
         return isUser;
     }
