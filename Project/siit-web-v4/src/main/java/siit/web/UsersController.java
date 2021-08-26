@@ -23,9 +23,6 @@ public class UsersController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView displayUsers(){
         ModelAndView mav = new ModelAndView();
-
-        System.out.println(userService.getAllUsers());
-
         mav.setViewName("users-list");
         mav.addObject("users", userService.getAllUsers());
 
