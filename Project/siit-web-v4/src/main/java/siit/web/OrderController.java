@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.*;
 import siit.model.Order;
 import siit.model.OrderProduct;
 
-import siit.sevices.ReportService;
-import siit.sevices.OrderProductService;
-import siit.sevices.OrderService;
+import siit.services.OrderProductService;
+import siit.services.OrderService;
 
 
 import java.util.List;

@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import siit.ValidationException;
 import siit.model.Customer;
-import siit.sevices.CustomerService;
-import siit.sevices.OrderService;
-import siit.sevices.UserService;
+import siit.services.CustomerService;
+import siit.services.OrderService;
+import siit.services.UserService;
 
 import javax.servlet.http.HttpSession;
 

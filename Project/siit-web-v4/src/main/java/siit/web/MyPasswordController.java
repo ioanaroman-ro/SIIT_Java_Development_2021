@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import siit.ValidationException;
 import siit.model.User;
-import siit.sevices.UserService;
+import siit.services.UserService;
 
 import javax.servlet.http.HttpSession;
 

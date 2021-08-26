@@ -3,12 +3,9 @@ package siit.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import siit.model.OrderProduct;
 import siit.model.Product;
-import siit.sevices.ProductService;
+import siit.services.ProductService;
 
-import javax.servlet.http.HttpSession;
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController

@@ -5,13 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import siit.ValidationException;
-import siit.model.Customer;
 import siit.model.User;
-import siit.sevices.CustomerService;
-import siit.sevices.OrderService;
-import siit.sevices.UserService;
-
-import java.util.List;
+import siit.services.UserService;
 
 @Controller
 @RequestMapping("/users")

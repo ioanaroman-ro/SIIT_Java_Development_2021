@@ -7,16 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import siit.sevices.CustomerService;
-import siit.sevices.ProductService;
-import siit.sevices.UserService;
+import siit.services.CustomerService;
+import siit.services.UserService;
 
 import javax.servlet.http.HttpSession;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Controller
 public class AddNewCustomerController {
