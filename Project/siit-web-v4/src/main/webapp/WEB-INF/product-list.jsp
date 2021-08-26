@@ -38,9 +38,6 @@
                     <td><c:out value="${products.price}" /></td>
                     <td><img src=<c:out value="${products.url}" /> width="150px height=150px" class="img-fluid rounded-pill"/>
 
-                    <td>
-                        <a href="<c:url value="/products/${products.id}/edit"/> " class="btn btn-info">Edit</a>
-                    </td>
                 </tr>
             </c:forEach>
 

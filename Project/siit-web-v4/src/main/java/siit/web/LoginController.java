@@ -34,7 +34,6 @@ public class LoginController {
             session.setAttribute("logged_user", user);
             mav.setViewName("redirect:/users");
         } else {
-
             if (userService.checkUser(user, password)) {
                 session.setAttribute("logged_user", user);
                 mav.setViewName("redirect:/customers");

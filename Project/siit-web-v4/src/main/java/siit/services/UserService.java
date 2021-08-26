@@ -15,50 +15,50 @@ public class UserService {
     @Autowired
     UserDao userDao;
 
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userDao.getUsers();
     }
 
-    public void changeStatus(User user){
+    public void changeStatus(User user) {
         userDao.changeUserStatus(user);
     }
 
-    public User getUserByUsername(String userName){
+    public User getUserByUsername(String userName) {
         List<User> registeredUsers = getAllUsers();
         User user = new User();
-        for(User usr: registeredUsers){
-            if(usr.getUserName().equals(userName)){
-                user=usr;
+        for (User usr : registeredUsers) {
+            if (usr.getUserName().equals(userName)) {
+                user = usr;
             }
         }
         return user;
     }
 
-    public void createNewUser(String userName,String password){
+    public void createNewUser(String userName, String password) {
         List<User> registeredUsers = getAllUsers();
         User user = new User();
-        if(password.length() >= 5){
+        if (password.length() >= 5) {
             user.setPassword(password);
-            for(User usr:registeredUsers){
-                if(!userName.equals(usr.getUserName())){
+            for (User usr : registeredUsers) {
+                if (!userName.equals(usr.getUserName())) {
                     user.setUserName(userName);
                     user.setStatus("Active");
                 } else {
                     throw new ValidationException("Username already exists!");
                 }
             }
-        }else{
+        } else {
             throw new ValidationException("Password must be at least 5 characters long");
         }
         userDao.insertUser(user);
     }
 
-    public User getUserById(int userId){
+    public User getUserById(int userId) {
         List<User> registeredUsers = getAllUsers();
         User user = new User();
-        for(User usr: registeredUsers){
-            if(usr.getUserid() == userId){
-                user=usr;
+        for (User usr : registeredUsers) {
+            if (usr.getUserid() == userId) {
+                user = usr;
             }
         }
         return user;
@@ -72,7 +72,13 @@ public class UserService {
         for (User usr : getAllUsers()) {
             if (usr.equals(user)) {
                 isUser = true;
+                user.setStatus(usr.getStatus());
+                break;
             }
+        }
+
+        if (user.getStatus().equals("Inactive")) {
+            throw new ValidationException("User invalid. Please contact admin.");
         }
         return isUser;
     }
