@@ -51,7 +51,7 @@ public class ReportService {
             for (OrderProduct op : orderProductList) {
                 document.add(new Paragraph(op.getProduct().getName() + "  / "
                         + op.getQuantity() + "  / "
-                        + op.getDiscount() + "  / "
+                        + BigDecimal.valueOf(1).subtract(op.getDiscount()).multiply(BigDecimal.valueOf(100)).intValue() + " % / "
                         + op.getValue()));
                 value = value.add(op.getValue());
             }

@@ -1,13 +1,13 @@
 <component name="libraryTable">
-  <library name="Maven: com.itextpdf:io:7.0.2">
+  <library name="Maven: org.mockito:mockito-core:3.1.0">
     <CLASSES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/itextpdf/io/7.0.2/io-7.0.2.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-core/3.1.0/mockito-core-3.1.0.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/com/itextpdf/io/7.0.2/io-7.0.2-javadoc.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-core/3.1.0/mockito-core-3.1.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/com/itextpdf/io/7.0.2/io-7.0.2-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/mockito/mockito-core/3.1.0/mockito-core-3.1.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
