@@ -55,9 +55,23 @@ public class ReportService {
                         + op.getValue()));
                 value = value.add(op.getValue());
             }
+            int transport = 0;
+
+            if (value.doubleValue() >= 100){
+                transport = 200;
+            }
+
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Total order value: "));
+            document.add(new Paragraph(String.valueOf(value)));
+
+            document.add(new Paragraph(" "));
+            document.add(new Paragraph("Transport: " + transport));
+
             document.add(new Paragraph(" "));
             document.add(new Paragraph("Total value: "));
-            document.add(new Paragraph(String.valueOf(value)));
+            document.add(new Paragraph(String.valueOf(value.doubleValue() + transport)));
+
             document.close();
             writer.close();
         } catch (DocumentException |
