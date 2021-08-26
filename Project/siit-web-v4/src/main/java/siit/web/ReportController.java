@@ -16,7 +16,7 @@ public class ReportController {
     public ModelAndView generateReport(@PathVariable int customerId, @PathVariable int orderId){
         ModelAndView mav = new ModelAndView();
         reportService.generateReport(customerId, orderId);
-        mav.setViewName("redirect:/customers");
+        mav.setViewName("reportOK");
         return mav;
     }
 
