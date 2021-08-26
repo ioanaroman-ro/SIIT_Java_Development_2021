@@ -17,7 +17,7 @@ public class UserDao {
 
 
     public List<User> getUsers() {
-        return jdbcTemplate.query("select * from Users", this::getUser);
+        return jdbcTemplate.query("select * from Users order by username ASC", this::getUser);
     }
 
     private User getUser(ResultSet rs, int rowNum) throws SQLException {

@@ -12,7 +12,10 @@
   <body>
   	<div class="page-header">
   		<div class="pull-left">
-  			Welcome ${logged_user}! This is a list of all users.
+  			<span class="border border-primary">
+  			  	Welcome ${logged_user}! This is a list of all users.
+  			</span>
+
   			<a href="/logout" class="btn btn-primary">Logout</a>
   			<a href="/products" class="btn btn-primary">View products</a>
   		</div>
@@ -36,9 +39,15 @@
                     <td><c:out value="${users.userName}" /></td>
                     <td><c:out value="${users.status}" /></td>
                     <td>
+                        <div>
                         <a href="<c:url value="/users/${users.userid}/status"/> " class="btn btn-info">Change Status</a>
+                        </div>
+                        <div>
                         <a href="<c:url value="/users/${users.userid}/personaldata"/> " class="btn btn-info">Change Personal Data</a>
+                        </div>
+                        <div>
                         <a href="<c:url value="/users/${users.userid}/resetpass"/> " class="btn btn-info">Reset password</a>
+                        </div>
                     </td>
                 </tr>
             </c:forEach>

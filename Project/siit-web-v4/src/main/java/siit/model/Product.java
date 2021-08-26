@@ -10,6 +10,7 @@ public class Product {
     private BigDecimal price;
     private String url;
 
+
     public String getUrl() {
         return url;
     }
@@ -62,4 +63,5 @@ public class Product {
     public int hashCode() {
         return Objects.hash(id, name, weight, price);
     }
+
 }

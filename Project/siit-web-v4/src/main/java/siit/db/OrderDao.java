@@ -23,11 +23,12 @@ public class OrderDao {
     OrderProductDao orderProductDao;
 
     public List<Order> getOrdersBy(int customerId) {
-        return jdbcTemplate.query("SELECT * FROM orders WHERE customer_id = ?",
+        return jdbcTemplate.query("SELECT * FROM orders WHERE customer_id = ? order by placed ASC",
                 this::getOrder, customerId);
     }
 
     public void deleteOrderBy(int orderId) {
+
         jdbcTemplate.update("DELETE FROM orders WHERE id = ?", orderId);
     }
 

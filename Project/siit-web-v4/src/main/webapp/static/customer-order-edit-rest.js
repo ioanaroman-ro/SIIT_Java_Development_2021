@@ -33,7 +33,8 @@ $(() => {
             contentType: 'application/json',
             data: JSON.stringify({
                 product: { id: productId },
-                quantity: quantity
+                quantity: quantity,
+                value: value
             })
         }).done(addOrUpdateOrderProductRow);
     });
@@ -44,6 +45,8 @@ function addOrUpdateOrderProductRow(orderProduct) {
     if (existingRow.length == 1) {
         existingRow.find('[name="spanQuantity"]')
             .hide().text(orderProduct.quantity).show('slow');
+        existingRow.find('[name="spanDiscount"]')
+              hide().text(orderProduct.discount).show('slow');
         existingRow.find('[name="spanValue"]')
             .hide().text(orderProduct.value).show('slow');
     } else {
@@ -56,8 +59,10 @@ function addOrderProductRow(orderProduct) {
         <tr id="op_${orderProduct.id}">
             <th>${orderProduct.product.name}</th>
             <th><span name="spanQuantity">${orderProduct.quantity}</span></th>
+            <th><span name="spanPrice">${orderProduct.product.price}</span></th>
+            <th><span name="spanDiscount">${orderProduct.discount}</span></th>
             <th><span name="spanValue">${orderProduct.value}</span></th>
-            <th><img src="${orderProduct.product.url}" width="150px height=150px"/></th>
+            <th><img src="${orderProduct.product.url}" width="50px height=50px"/></th>
             <th><button name="buttonProductRemove" class="btn btn-info">Remove</button></th>
         </tr>
     `);

@@ -18,12 +18,12 @@ public class CustomerDao {
     JdbcTemplate jdbcTemplate;
 
     public List<Customer> getAllCustomers(int userid){
-        return jdbcTemplate.query("SELECT * FROM customers where userid = ?",
+        return jdbcTemplate.query("SELECT * FROM customers where userid = ? order by name ASC",
                 this::getCustomer, userid);
     }
 
     public Customer getCustomerById(int id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM customers WHERE id = ?",
+        return jdbcTemplate.queryForObject("SELECT * FROM customers WHERE id = ? order by name ASC",
                 this::getCustomer, id);
     }
 

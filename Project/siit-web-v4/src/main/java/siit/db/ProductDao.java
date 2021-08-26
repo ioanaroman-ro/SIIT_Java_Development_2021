@@ -17,7 +17,7 @@ public class ProductDao {
     JdbcTemplate jdbcTemplate;
 
     public List<Product> getAllProducts() {
-        return jdbcTemplate.query("SELECT * FROM products",
+        return jdbcTemplate.query("SELECT * FROM products order by name ASC",
                 this::getProduct);
 
     }

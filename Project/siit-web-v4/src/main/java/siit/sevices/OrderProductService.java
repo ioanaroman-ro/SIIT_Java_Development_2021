@@ -24,21 +24,23 @@ public class OrderProductService {
         List<Product> existingProductsInOrder = new ArrayList<>();
 
         Product addedProduct = getProduct(orderProduct);
-        OrderProduct addedOrderPoduct = new OrderProduct();
+        OrderProduct addedOrderProduct;
 
         for (OrderProduct op : orderProductList){
             existingProductsInOrder.add(op.getProduct());
         }
 
+        System.out.println(existingProductsInOrder);
+
         if (existingProductsInOrder.contains(addedProduct)){
             orderProductDao.updateOrderProductBy(orderId, addedProduct.getId(), orderProduct.getQuantity());
-            addedOrderPoduct=orderProductDao.getOneOrderProductBy(orderId, addedProduct.getId());
+            addedOrderProduct=orderProductDao.getOneOrderProductBy(orderId, addedProduct.getId());
         } else {
             orderProductDao.insertOrderProduct(orderId, addedProduct.getId(), orderProduct.getQuantity());
-            addedOrderPoduct=orderProductDao.getOneOrderProductBy(orderId, addedProduct.getId());
+            addedOrderProduct=orderProductDao.getOneOrderProductBy(orderId, addedProduct.getId());
         }
 
-        return addedOrderPoduct;
+        return addedOrderProduct;
     }
 
     public Product getProduct(OrderProduct orderProduct) {

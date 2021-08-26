@@ -5590,3 +5590,11 @@ insert into customers (NAME, PHONE) VALUES 'Leibniz Hanss', '+2112213123' [21002
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:832)
+2021-07-25 12:45:01 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO ORDERS_PRODUCTS  (DISCOUNT)
+VALUES (0.95) WHERE[*] QUANTITY > 5 AND QUANTITY < 10"; SQL statement:
+INSERT INTO ORDERS_PRODUCTS  (discount)
+VALUES (0.95) where quantity > 5 and quantity < 10 [42000-200]
+2021-07-25 12:51:52 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "UPDATE ORDERS_PRODUCTS OP SET OP.DISCOUNT = 0,95[*] WHERE OP.QUANTITY >5 AND OP.QUANTITY < 10"; expected "identifier"; SQL statement:
+update ORDERS_PRODUCTS op set op.discount = 0,95 where op.quantity >5 and op.quantity < 10 [42001-200]

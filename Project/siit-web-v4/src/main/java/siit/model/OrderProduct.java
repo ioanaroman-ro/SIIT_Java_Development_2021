@@ -5,10 +5,19 @@ import java.math.BigDecimal;
 public class OrderProduct {
     private int id;
     private BigDecimal quantity;
+    private BigDecimal discount;
     private BigDecimal value;
     private String name;
     private Product product;
     private int orderId;
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
+    }
 
     public int getOrderId() {
         return orderId;
@@ -56,5 +65,18 @@ public class OrderProduct {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+
+    @Override
+    public String toString() {
+        return "OrderProduct{" +
+                "id=" + id +
+                ", quantity=" + quantity +
+                ", value=" + value +
+                ", name='" + name + '\'' +
+                ", product=" + product +
+                ", orderId=" + orderId +
+                '}';
     }
 }

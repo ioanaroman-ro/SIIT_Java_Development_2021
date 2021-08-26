@@ -7,6 +7,8 @@
           rel="stylesheet"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
           crossorigin="anonymous">
+
+
   </head>
 
   <body>
@@ -19,7 +21,7 @@
   		<div class="clearfix"></div>
   	</div>
 
-        <table class="table table-striped">
+        <table class="table table-hover">
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -34,7 +36,7 @@
                     <td><c:out value="${products.name}" /></td>
                     <td><c:out value="${products.weight}" /></td>
                     <td><c:out value="${products.price}" /></td>
-                    <td><img src=<c:out value="${products.url}" /> width="150px height=150px"/>
+                    <td><img src=<c:out value="${products.url}" /> width="150px height=150px" class="img-fluid rounded-pill"/>
 
                     <td>
                         <a href="<c:url value="/products/${products.id}/edit"/> " class="btn btn-info">Edit</a>
