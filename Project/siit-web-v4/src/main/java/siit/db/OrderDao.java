@@ -62,4 +62,9 @@ public class OrderDao {
         return value.doubleValue();
 
     }
+
+    public Order getOrderBy(Integer orderId) {
+        return jdbcTemplate.queryForObject("SELECT * FROM orders WHERE id = ?",
+                this::getOrder, orderId);
+    }
 }

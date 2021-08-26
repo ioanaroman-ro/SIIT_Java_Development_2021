@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import siit.model.Order;
 import siit.model.OrderProduct;
 
+import siit.sevices.ReportService;
 import siit.sevices.OrderProductService;
 import siit.sevices.OrderService;
 
@@ -17,6 +18,7 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
+
 
     @Autowired
     OrderProductService orderProductService;
@@ -39,7 +41,6 @@ public class OrderController {
 
     @DeleteMapping ("/products/{orderProductId}")
     public void removeProduct(@PathVariable int orderProductId) {
-        System.out.println("orderProductId " + orderProductId);
         orderProductService.removeOrderProduct(orderProductId);
     }
 

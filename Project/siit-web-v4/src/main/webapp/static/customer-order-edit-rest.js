@@ -22,9 +22,10 @@ $(() => {
         var productId = $('#productAddId').val();
         var productName = $('#productAddName').val();
         var quantity = $('#productAddQuantity').val();
+        var discount = $('#productAddDiscount').val();
         var value = $('#productAddValue').val();
 
-        $('##productAddId, #productAddName, #productAddQuantity', '#productAddValue').val(null);
+        $('##productAddId, #productAddName, #productAddQuantity', '#productAddDiscount', '#productAddValue').val(null);
 
         $.ajax({
             url: `/api/customers/${customerId}/orders/${orderId}/products`,
@@ -34,6 +35,7 @@ $(() => {
             data: JSON.stringify({
                 product: { id: productId },
                 quantity: quantity,
+                discount: discount,
                 value: value
             })
         }).done(addOrUpdateOrderProductRow);

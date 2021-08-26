@@ -12,6 +12,7 @@
 	<div class="container">
 		<h2>Orders for ${customer.name}&nbsp;&nbsp;
 			<a href="<c:url value="/customers/${customer.id}/orders/add"/> " class="btn btn-primary">Add New Order</a>
+
 			<a href="<c:url value="/customers"/>" class="btn btn-primary">Back to Customers List</a></h2>
 		<table class="table table-striped">
 			<tr>
@@ -27,6 +28,7 @@
 					<td><c:out value="${order.placed}" /></td>
 					<td>
 					    <a href="<c:url value="/static/customer-order-edit-rest.html#customerId=${customer.id}&orderId=${order.id}"/> " class="btn btn-info">Edit</a>
+					    <a href="<c:url value="/generatedReport/${customer.id}/${order.id}"/> " class="btn btn-info">Generate Report</a>
 					    <a href="<c:url value="/customers/${customer.id}/orders/${order.id}/delete"/> " class="btn btn-info">Delete</a>
                     </td>
 				</tr>
