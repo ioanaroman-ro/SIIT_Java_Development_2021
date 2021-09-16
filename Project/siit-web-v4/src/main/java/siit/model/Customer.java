@@ -15,6 +15,14 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(int id, String name, String phone, String email, LocalDate birthDate) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.birthDate = birthDate;
+    }
+
     public List<Order> getOrders() {
         return orders;
     }
